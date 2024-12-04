@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин iMargat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .category {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #e67e22;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .price {
+            font-size: 18px;
+            color: #e67e22;
+            margin: 10px 0;
+        }
+        .quantity {
+            margin: 10px 0;
+        }
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Интернет-магазин iMargat</h1>
+<div class="category">
+    <h1>{{ categories.category_name }}</h1></div>
+<div class="container">
+    <div class="card">
+        {% for product in products %}
+        <img src="{{ product.pr_photo.url }}" alt="{{ product.pr_name }}">
+        <h3>{{ product.pr_name }}</h3>
+        <div class="price">{{ product.pr_price }}</div>
+        <div class="quantity">{{ product.pr_count }}</div>
+        {% endfor %}
+        <a href="#" class="button">Купить</a>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Товар 2">
+        <h3>Товар 2</h3>
+        <div class="price">₽2000</div>
+        <div class="quantity">Количество: 5</div>
+        <a href="#" class="button">Купить</a>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Товар 3">
+        <h3>Товар 3</h3>
+        <div class="price">₽3000</div>
+        <div class="quantity">Количество: 8</div>
+        <a href="#" class="button">Купить</a>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Товар 4">
+        <h3>Товар 4</h3>
+        <div class="price">₽4000</div>
+        <div class="quantity">Количество: 2</div>
+        <a href="#" class="button">Купить</a>
+    </div>
+</div>
+
+</body>
+</html>

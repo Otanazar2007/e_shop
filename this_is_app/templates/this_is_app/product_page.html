@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% for c in products %}
+    <title>{{ c.pr_name }} | Imargat</title>
+    {% endfor %}
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+}
+
+.product-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.product-image {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.product-image img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product-details {
+    flex: 2;
+}
+
+.product-details h2 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.description {
+    margin: 10px 0;
+    color: #cccccc;
+}
+
+.price {
+    font-size: 1.5em;
+    color: #ffcc00; /* Золотистый цвет для цены */
+    margin: 10px 0;
+}
+
+.quantity-container {
+    margin: 15px 0;
+}
+
+.quantity-container label {
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #222;
+    color: #ffffff;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #ffcc00;
+}
+
+.buy-button {
+    background-color: #ffcc00;
+    color: #121212;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.buy-button:hover {
+    background-color: #e6b800;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+<body>
+    <header>
+        <h1>Интернет-магазин iMargat</h1>
+    </header>
+    <main>
+        <div class="product-container">
+          {% for product in products %}
+            <div class="product-image">
+                <img src="{{ product.pr_photo.url }}" alt="Имя товара">
+            </div>
+            <div class="product-details">
+                <h2>{{ product.pr_name }}</h2>
+                <p class="description">{{ product.pr_descr }}</p>
+                <p class="price">{{ product.pr_price }}</p>
+                <div class="quantity-container">
+                    <label for="quantity">Количество: {{ product.pr_count }}</label>
+                  {% endfor %}
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                </div>
+                <button class="buy-button">Купить</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Imargat. Все права защищены.</p>
+    </footer>
+</body>
+</html>

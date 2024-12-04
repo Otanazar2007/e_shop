@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import LOGIN_URL
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'this_is_app'
+    'this_is_app',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +130,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR / 'assets', ), )
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / "media"
+
+LOGIN_URL = '/registration/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

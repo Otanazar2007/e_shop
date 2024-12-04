@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Категории | Интернет-магазин Imargat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Темный фон для всего тела */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.category {
+    background-color: #1e1e1e; /* Темный фон для карточек категорий */
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.category:hover {
+    transform: scale(1.05);
+}
+
+.category-image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.category-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #ffcc00;
+    color: #121212;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.category-link:hover {
+    background-color: #e6b800;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+<body>
+    <header>
+        <h1>Интернет-магазин Imargat</h1>
+    </header>
+    <main>
+        <section class="categories-container">
+            <div class="category">
+              {% for category in categories %}
+                <img src="{{ category.category_photo.url }}" alt="Категория 1" class="category-image">
+                <h2>{{ category.category_name }}</h2>
+                <p>{{ category.category_descr }}</p>
+                <a href="/category/{{ category.id }}" class="category-link">Посмотреть товары</a>
+            </div>
+            <div class="category">
+                {% endfor %}
+            </div>
+            <div class="category">
+                <img src="category3.jpg" alt="Категория 3" class="category-image">
+                <h2>Категория 3</h2>
+                <p>Описание категории 3. Здесь вы можете указать, что предлагает эта категория.</p>
+                <a href="category3.html" class="category-link">Посмотреть товары</a>
+            </div>
+            <!-- Добавьте больше категорий по необходимости -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Imargat. Все права защищены.</p>
+    </footer>
+</body>
+</html>

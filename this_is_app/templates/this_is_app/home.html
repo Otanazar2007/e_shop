@@ -3,13 +3,122 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин Imargat</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.price {
+    font-size: 1.2em;
+    color: #ffcc00; /* Золотистый цвет для цены */
+}
+
+.quantity {
+    font-size: 0.9em;
+    color: #cccccc;
+}
+
+button {
+    background-color: #ffcc00;
+    color: #121212;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #e6b800;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+</style>
 <body>
-{% for product in products %}
-    <h1>{{ product.pr_name }}</h1>
-    <img src="{{ products.pr_photo.url }}" alt="{{ product.pr_name }}" class="main_image">
-    <p>{{ product.pr_photo.url }}</p>
-    {% endfor %}
+    <header>
+        <h1>Интернет-магазин Imargat</h1>
+        <h1><a href="categories">Категории</a></h1>
+    </header>
+    <main>
+        <section class="product-grid">
+            <div class="product-card">
+                {% for product in products %}
+                <img src="{{ product.pr_photo.url }}" alt="{{ product.pr_name }}">
+                <h2><a href="/product/{{ product.id }}">{{ product.pr_name }}</a></h2>
+                <p class="price">{{ product.pr_price }}</p>
+                <p class="quantity">{{ product.pr_count }}</p>
+                <form action="/add_to_cart/{{ product.id }}/" method="post">
+                    {% csrf_token %}
+                    <input type="number" min="1" value="1" name="pr_count">
+                    <button class="btn btn success" type="submit">Добавить в корзину</button>
+                </form>
+                <form action="/add_to_favorite/{{ product.id }}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn success" type="submit">В избранное</button>
+                </form>
+            </div>
+            <div class="product-card">
+                {% endfor %}
+                <button>Купить</button>
+            </div>
+            <div class="product-card">
+
+
+                <button>Купить</button>
+            </div>
+            <!-- Добавьте больше карточек товаров по необходимости -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Imargat. Все права защищены</p>
+        <a href="{% url 'user_cart' %}">Корзина</a>
+        <a href="{% url 'favorites' %}">Избранное</a>
+    </footer>
 </body>
 </html>

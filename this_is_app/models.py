@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 class CategoryProduct(models.Model):
     category_name = models.CharField(max_length=50)
+    category_descr = models.TextField(max_length=2000)
+    category_photo = models.FileField(upload_to='category_image')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -42,3 +44,15 @@ class UserCart(models.Model):
     class Meta:
         verbose_name = 'User Cart'
         verbose_name_plural = 'User Carts'
+
+class Favorites(models.Model):
+    username = models.CharField(max_length=30)
+    pr_name = models.ForeignKey(Product, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.pr_name.pr_name
+
+    class Meta:
+        verbose_name = "Favorite"
+        verbose_name_plural = 'Favorites'
