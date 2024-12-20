@@ -1,9 +1,9 @@
-from pickle import format_version
+
 
 from django.contrib.auth import login
 from django.shortcuts import render, redirect, get_object_or_404
 
-from this_is_app.models import Product, CategoryProduct, UserCart, Favorites
+from this_is_app.models import Product, CategoryProduct, UserCart, Favorites, BankCart
 from user.forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 import telebot

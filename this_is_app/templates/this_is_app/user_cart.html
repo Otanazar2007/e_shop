@@ -1,129 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корзина - iMargat</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'user_cart.css' %}">
 </head>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-main {
-    padding: 20px;
-}
-
-.cart-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.cart-item {
-    display: flex;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-}
-
-.product-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    margin-right: 15px;
-}
-
-.product-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.product-name {
-    font-size: 18px;
-    margin: 0;
-}
-
-.product-quantity, .product-price {
-    margin: 5px 0;
-}
-
-.total {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.checkout-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.checkout-button:hover {
-    background-color: #45a049;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-</style>
 <body>
     <header>
-        <h1>Корзина</h1>
-        <p>Интернет-магазин iMargat</p>
+        <h1>Корзина - iMargat</h1>
     </header>
+
     <main>
-        <div class="cart-container">
+        <section class="cart">
+            <!-- Пример карточки товара -->
             <div class="cart-item">
                 {% for cart_item in cart %}
-                <img src="{{ cart_item.pr_name.pr_photo.url }}" alt="{{ cart_item.pr_name }}" class="product-image">
-                <div class="product-details">
-                    <h2 class="product-name">{{ cart_item.pr_name }} </h2>
-                    <p class="product-quantity">{{ cart_item.pr_count }}</p>
+                <img src="{{ cart_item.pr_name.pr_photo.url }}" alt="{{ cart_item.pr_name }}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h2 class="cart-item-title">{{ cart_item.pr_name }}</h2>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <p class="cart-item-price">{{ cart_item.pr_name.pr_price }} сум</p>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="cart-item">
 
-                </div>
-            </div>
-            <div class="cart-item">
-                {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="total">
-            <h2>Итого: 3000 ₽</h2>
-            <button class="checkout-button">Оформить заказ</button>
-        </div>
+            <!-- Можно добавить больше карточек товара -->
+        </section>
+
+        <section class="cart-summary">
+            <h2>Итого</h2>
+            {% for c in cart %}
+            <p class="total-price">Общая сумма: {{ c.pr_name.pr_price }}</p>
+            <button class="checkout-btn"><a href="/bank_cart">Перейти к оформлению</button>
+            {% endfor %}
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2023 iMargat. Все права защищены.</p>
+        <p>© 2024 Интернет-магазин iMargat</p>
     </footer>
 </body>
 </html>

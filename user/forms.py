@@ -1,3 +1,5 @@
+from calendar import month
+
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -15,6 +17,12 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+
+class BankCartForm(forms.Form):
+    number = forms.IntegerField()
+    name = forms.CharField(max_length=100)
+    time = forms.CharField(max_length=5)
+    cvv = forms.IntegerField()
 
 
 

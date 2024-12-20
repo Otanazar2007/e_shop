@@ -56,3 +56,17 @@ class Favorites(models.Model):
     class Meta:
         verbose_name = "Favorite"
         verbose_name_plural = 'Favorites'
+
+class BankCart(models.Model):
+    number = models.IntegerField()
+    name = models.CharField(max_length=100)
+    time = models.CharField(max_length=5)
+    cvv = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Bank Cart'
+        verbose_name_plural = 'Bank Carts'

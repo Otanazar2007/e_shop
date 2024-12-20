@@ -105,18 +105,12 @@ footer {
             </div>
             <div class="product-card">
                 {% endfor %}
-                <button>Купить</button>
-            </div>
-            <div class="product-card">
 
-
-                <button>Купить</button>
-            </div>
             <!-- Добавьте больше карточек товаров по необходимости -->
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Imargat. Все права защищены</p>
+        <p><a href="{% url 'profile' %}">Ваш профиль</a></p>
         <a href="{% url 'user_cart' %}">Корзина</a>
         <a href="{% url 'favorites' %}">Избранное</a>
     </footer>

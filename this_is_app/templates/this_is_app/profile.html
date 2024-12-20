@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваш профиль</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        h2 {
+            margin: 0 0 15px;
+            color: #333;
+        }
+        .info {
+            margin: 10px 0;
+        }
+        .info span {
+            font-weight: bold;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Ваш профиль </h2>
+        <div class="info">
+            <p><span>Имя:</span> {{ user.username }}</p>
+            <p><span>Пароль:</span> <a href="{% url 'change_profile' %}">Пароль нельзя посмотреть но можно сбросить<a></p>
+            <p><span>Почта:</span> {{ user.email }}</p>
+        </div>
+        <div class="form-container">
+                <button type="submit">Изменить данные </button>
+        </div>
+    </div>
+</body>
+</html>

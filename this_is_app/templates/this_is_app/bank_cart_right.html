@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата - iMargat</title>
+    <link rel="stylesheet" href="{% static 'bank_cart.css'%}">
+</head>
+<body>
+    <div class="payment-container">
+        <header>
+            <h1>iMargat</h1>
+            <p>Ваш платеж был успешно принят!</p>
+        </header>
+
+        <div class="confirmation-message">
+            <h2>Карта принята!</h2>
+            <p>Спасибо за ваш платеж. Мы обработаем ваш заказ и скоро свяжемся с вами.</p>
+        </div>
+
+        <footer>
+            <p>Безопасная оплата © iMargat 2024</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'bank_cart.js' %}"></script>
+</body>
+</html>
