@@ -15,8 +15,8 @@
     <main>
         <section class="cart">
             <!-- Пример карточки товара -->
+            {% for cart_item in cart %}
             <div class="cart-item">
-                {% for cart_item in cart %}
                 <img src="{{ cart_item.pr_name.pr_photo.url }}" alt="{{ cart_item.pr_name }}" class="cart-item-image">
                 <div class="cart-item-details">
                     <h2 class="cart-item-title">{{ cart_item.pr_name }}</h2>
@@ -26,19 +26,24 @@
                         <button class="quantity-btn">+</button>
                     </div>
                     <p class="cart-item-price">{{ cart_item.pr_name.pr_price }} сум</p>
-                    {% endfor %}
+
+                    <!-- Кнопка удаления товара из корзины -->
+                    <form method="post" action="{% url 'delete_from_cart' cart_item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="remove-btn">Удалить</button>
+                    </form>
+
                 </div>
             </div>
-
-            <!-- Можно добавить больше карточек товара -->
+            {% endfor %}
         </section>
 
         <section class="cart-summary">
             <h2>Итого</h2>
             {% for c in cart %}
             <p class="total-price">Общая сумма: {{ c.pr_name.pr_price }}</p>
-            <button class="checkout-btn"><a href="/bank_cart">Перейти к оформлению</button>
             {% endfor %}
+            <button class="checkout-btn"><a href="/bank_cart">Перейти к оформлению</a></button>
         </section>
     </main>
 

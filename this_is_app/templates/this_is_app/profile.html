@@ -66,8 +66,12 @@
             <p><span>Почта:</span> {{ user.email }}</p>
         </div>
         <div class="form-container">
-                <button type="submit">Изменить данные </button>
-        </div>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Выйти из аккаунта</button>
+    </form>
+</div>
+
     </div>
 </body>
 </html>

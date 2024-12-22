@@ -16,6 +16,8 @@ urlpatterns = [
     path('favorites/', views.favorites, name = 'favorites'),
     path('bank_cart/', bank_cart, name = 'bank_cart'),
     path('profile/', profile_view, name = 'profile' ),
-    path('change_profile/', change_profile, name = 'change_profile')
+    path('change_profile/', change_profile, name = 'change_profile'),
+    path('favorites/delete/<int:pk>/', views.delete_from_favorites, name = 'delete_from_favorites'),
+    path('delete_from_cart/<int:pk>/', views.delete_from_cart, name = 'delete_from_cart')
 #    path('bank_cart_right/', views.bank_cart_right, name = 'bank_cart_right')
 ]

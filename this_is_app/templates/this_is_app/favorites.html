@@ -67,33 +67,18 @@
 
     <h1>Избранные товары - iMargat</h1>
     <div class="product-list">
+        {% for fv in favorites %}
         <div class="product">
-            {% for fv in favorites %}
             <img src="{{ fv.pr_name.pr_photo.url }}" alt="{{ fv.pr_name }}">
             <h2>{{ fv.pr_name }}</h2>
             <p class="store-name">Интернет магазин iMargat</p>
-            <button class="remove-button">Удалить из избранного</button>
-
+            <form method="post" action="{% url 'delete_from_favorites' fv.id %}">
+                {% csrf_token %}
+                <button class="remove-button" type="submit">Удалить из избранного</button>
+            </form>
         </div>
-        <div class="product">
-
-        </div>
-        <div class="product">
-            {% endfor %}
-        </div>
-        <!-- Добавьте больше товаров по необходимости -->
+        {% endfor %}
     </div>
-
-    <script>
-        // Пример кода для удаления товара из избранного
-        const removeButtons = document.querySelectorAll('.remove-button');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const product = this.parentElement;
-                product.remove();
-            });
-        });
-    </script>
 
 </body>
 </html>

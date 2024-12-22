@@ -20,6 +20,7 @@ from this_is_app import urls
 from django.conf.urls.static import static
 from django.conf import settings
 from user.views import register_view, login_view, bank_cart
+from this_is_app.views import logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +28,8 @@ urlpatterns = [
     path('registration/', register_view, name='register'),
     path('login/', login_view, name='login'),
     path('about/',include('this_is_app.urls'), name='about_us'),
-    path('bank_cart/', bank_cart, name = 'bank_cart')
+    path('bank_cart/', bank_cart, name = 'bank_cart'),
+    path('logout/',logout, name = 'logout')
 #    path('bank_cart/', include('this_is_app.urls'), name = 'bank_cart')
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

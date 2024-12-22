@@ -1,6 +1,5 @@
-
-
-from django.contrib.auth import login
+import django.contrib.auth
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 
 from this_is_app.models import Product, CategoryProduct, UserCart, Favorites, BankCart
@@ -78,3 +77,35 @@ def favorites(request):
         return render(request, 'this_is_app/favorites.html', {'favorites':favorites})
     else:
         return redirect('home')
+
+@login_required()
+def delete_from_favorites(request, pk):
+    if request.method == 'POST':
+        username = request.user.username
+        favorite_prod = Favorites.objects.filter(username = username, id = pk)
+        favorite_prod.delete()
+        favorites = Favorites.objects.filter(username = request.user.username).all()
+        return render(request, 'this_is_app/favorites.html',
+                      {'favorites':favorites})
+    else:
+        favorites = Favorites.objects.filter(username = request.user.username).all()
+        return render(request, 'this_is_app/favorites.html',
+                      {'favorites': favorites})
+
+@login_required()
+def logout(request):
+    django.contrib.auth.logout(request)
+    return redirect('home')
+
+@login_required()
+def delete_from_cart(request, pk):
+    if request.method == 'POST':
+        username = request.user.id
+        del_prod = UserCart.objects.filter(id = pk)
+        a = del_prod.delete()
+        print(f'{a}, это удаление')
+        cart = UserCart.objects.filter(user_id = username).all()
+        return render(request, 'this_is_app/user_cart.html', {'cart':cart})
+    else:
+        cart = UserCart.objects.filter(user_id = request.user.id).all()
+        return render(request, 'this_is_app/home.html', {'cart':cart})
